@@ -252,7 +252,7 @@ bool LMS1xx::getScanData(scanData* scan_data)
     // that's non-POSIX (doesn't work on OS X, for example).
     struct timeval tv;
     tv.tv_sec = 0;
-    tv.tv_usec = 100000;
+    tv.tv_usec = 1000000;
 
     logDebug("entering select()", tv.tv_usec);
     int retval = select(socket_fd_ + 1, &rfds, NULL, NULL, &tv);
