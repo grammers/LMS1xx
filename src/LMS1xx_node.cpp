@@ -56,7 +56,7 @@ int main(int argc, char **argv)
   n.param<bool>("publish_min_range_as_inf", inf_range, false);
   n.param<int>("port", port, 2111);
 
-  int newFrequency = 25*100; // 25Hz
+  int newFrequency = 25*100; // 25Hz limits [2500 - 5000]
 
   while (ros::ok())
   {
