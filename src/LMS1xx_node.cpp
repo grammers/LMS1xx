@@ -56,6 +56,8 @@ int main(int argc, char **argv)
   n.param<bool>("publish_min_range_as_inf", inf_range, false);
   n.param<int>("port", port, 2111);
 
+  int newFrequency = 25*100; // 25Hz limits [2500 - 5000]
+
   while (ros::ok())
   {
     ROS_INFO_STREAM("Connecting to laser at " << host);
@@ -125,6 +127,11 @@ int main(int argc, char **argv)
 
     ROS_DEBUG("Setting scan data configuration.");
     laser.setScanDataCfg(dataCfg);
+
+    ROS_INFO_STREAM("Setting scanning frequency");
+    cscanCfg tmpCfg = laser.getScanCfg();
+    tmpCfg.scaningFrequency = newFrequency;
+    laser.setScanCfg(tmpCfg);
 
     ROS_DEBUG("Starting measurements.");
     laser.startMeas();
